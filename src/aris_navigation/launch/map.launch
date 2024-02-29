@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<launch>
+    <rosparam param="ticks_meter">3965</rosparam>
+    
+    <node pkg="rosserial_python" type="serial_node.py" name="rosserial" output="screen">
+        <param name="port" value="/dev/ttyACM0" />
+        <param name="baud" value="57600" />
+    </node>
+
+    <include file="$(find rplidar_ros)/launch/rplidar.launch" />
+
+    <include file="$(find hector_slam_launch)/launch/tutorial.launch" />
+
+    <node name="telop" pkg="aris_navigation" type="teleop_keyboard_omni3.py" output="screen"/>
+
+</launch>
